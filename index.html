@@ -151,7 +151,9 @@
         }
 
         .grid-temas {
-            max-width: 560px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
             margin: 0 auto 36px auto;
         }
 
@@ -566,16 +568,16 @@
 
         <div class="section-header">
             <h3>Acceso al Enunciado Oficial</h3>
-            <p>Haga clic en el botón inferior para abrir el enunciado interactivo, casos de prueba y plantilla base en C++.</p>
+            <p>Seleccione la modalidad correspondiente a su plan o cohorte de cursado.</p>
         </div>
 
         <div class="grid-temas">
 
-            <!-- CARD TEMA ÚNICO -->
+            <!-- CARD TEMA ÚNICO (AoS) -->
             <div class="card-tema">
                 <div>
                     <div class="tema-header">
-                        <span class="tema-badge">Tema Único — Final Noviembre</span>
+                        <span class="tema-badge">Cohorte 2026 — Arreglo de Structs</span>
                         <span class="tema-icon">💊</span>
                     </div>
                     <h4 class="tema-title">Sistema de Gestión de Farmacia</h4>
@@ -584,8 +586,8 @@
 
                     <div class="spec-box">
                         <div class="spec-row">
-                            <span class="spec-label">Registro (Struct):</span>
-                            <span class="spec-value"><code>struct Medicamento</code></span>
+                            <span class="spec-label">Estructura de Datos:</span>
+                            <span class="spec-value"><code>struct Medicamento</code> (AoS)</span>
                         </div>
                         <div class="spec-row">
                             <span class="spec-label">Ordenamiento (20%):</span>
@@ -602,7 +604,41 @@
                     </div>
                 </div>
 
-                <a href="enunciado.html" class="btn-start">Comenzar Examen Final →</a>
+                <a href="enunciado.html" class="btn-start">Comenzar Examen (Structs) →</a>
+            </div>
+
+            <!-- CARD VECTORES PARALELOS (Años Anteriores) -->
+            <div class="card-tema" style="border-top-color: #7c3aed;">
+                <div>
+                    <div class="tema-header">
+                        <span class="tema-badge" style="background: #ede9fe; color: #5b21b6;">Años Anteriores — Vectores Paralelos</span>
+                        <span class="tema-icon">💊</span>
+                    </div>
+                    <h4 class="tema-title">Sistema de Gestión de Farmacia</h4>
+                    <div class="tema-subtitle">Stock y Vencimientos (Vectores Paralelos)</div>
+                    <p class="tema-desc">Mismo enunciado y reglas de negocio adaptado para alumnos de cohortes anteriores, utilizando 5 vectores paralelos sincronizados en lugar de estructuras.</p>
+
+                    <div class="spec-box">
+                        <div class="spec-row">
+                            <span class="spec-label">Estructura de Datos:</span>
+                            <span class="spec-value">5 Vectores Paralelos Sincronizados</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Ordenamiento (20%):</span>
+                            <span class="spec-value">Burbuja Mejorada Ascendente (por precio de lista)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Reportes de Final (25%):</span>
+                            <span class="spec-value">Filtro + Promedio por Categoría (C / M / E)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Modalidad:</span>
+                            <span class="spec-value">100% C++ (Plan Años Anteriores)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="enunciado_vectores.html" class="btn-start" style="background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);">Comenzar Examen (Vectores) →</a>
             </div>
 
         </div>
