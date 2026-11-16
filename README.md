@@ -1,7 +1,7 @@
 # 📋 Examen Final Regular (Noviembre 2026) — Sistema de Gestión de Farmacia (AoS)
 
 **Universidad Católica de Santiago del Estero — Departamento Académico San Salvador**  
-**Facultad de Ciencias de la Salud y Tecnologías de la Información**  
+**Departamento Académico San Salvador (Jujuy)**  
 **Cátedra:** Algoritmos y Programación  
 **Ciclo Lectivo:** 2026  
 
