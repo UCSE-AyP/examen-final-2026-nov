@@ -7,7 +7,6 @@ struct Medicamento {
     // Estructura declarada respetando estrictamente el orden del enunciado para inicializacion por llaves
     int codigo;            // Clave Primaria univoca (inmutable)
     int anioVencimiento;   // Anio de vencimiento (2026..2035)
-    int stockCajas;        // Existencias en cajas (>= 0)
     char categoria;        // 'C' Critico (2026), 'M' Medio (2027-2028), 'E' Estable (>= 2029)
     double precioLista;    // Precio base de lista (> 0.0)
     double precioVenta;    // Calculado: precioLista con descuento por categoria
@@ -31,10 +30,10 @@ void mostrarTabla(const Medicamento arr[], int tam);
 int main() {
     const int CAPACIDAD = 15;
     Medicamento inventario[CAPACIDAD] = {
-        {105, 2027, 40, 'M', 8000.0,  7200.0},
-        {210, 2030, 15, 'E', 12000.0, 12000.0},
-        {308, 2026, 25, 'C', 5000.0,  4000.0},
-        {412, 2028, 60, 'M', 9500.0,  8550.0}
+        {105, 2027, 'M', 8000.0,  7200.0},
+        {210, 2030, 'E', 12000.0, 12000.0},
+        {308, 2026, 'C', 5000.0,  4000.0},
+        {412, 2028, 'M', 9500.0,  8550.0}
     };
     int tam = 4;
 
@@ -88,13 +87,6 @@ int main() {
                     cin >> nuevo.anioVencimiento;
                 }
 
-                cout << "  Ingrese Stock en cajas (>= 0): ";
-                cin >> nuevo.stockCajas;
-                while (nuevo.stockCajas < 0) {
-                    cout << "  [!] Stock invalido. Ingrese valor >= 0: ";
-                    cin >> nuevo.stockCajas;
-                }
-
                 cout << "  Ingrese Precio de Lista (> 0): $";
                 cin >> nuevo.precioLista;
                 while (nuevo.precioLista <= 0.0) {
@@ -138,13 +130,6 @@ int main() {
                     while (modificado.anioVencimiento < 2026 || modificado.anioVencimiento > 2035) {
                         cout << "  [!] Anio fuera de rango. Ingrese entre 2026 y 2035: ";
                         cin >> modificado.anioVencimiento;
-                    }
-
-                    cout << "  Nuevo Stock en cajas (>= 0): ";
-                    cin >> modificado.stockCajas;
-                    while (modificado.stockCajas < 0) {
-                        cout << "  [!] Stock invalido. Ingrese valor >= 0: ";
-                        cin >> modificado.stockCajas;
                     }
 
                     cout << "  Nuevo Precio de Lista (> 0): $";
@@ -268,7 +253,6 @@ bool modificarMedicamento(Medicamento arr[], int tam, const Medicamento &actuali
     int pos = buscarPorCodigo(arr, tam, actualizado.codigo);
     if (pos == -1) return false;
     arr[pos].anioVencimiento = actualizado.anioVencimiento;
-    arr[pos].stockCajas = actualizado.stockCajas;
     arr[pos].categoria = actualizado.categoria;
     arr[pos].precioLista = actualizado.precioLista;
     arr[pos].precioVenta = actualizado.precioVenta;
@@ -345,7 +329,6 @@ void mostrarFicha(const Medicamento &e) {
     cout << "  +------------------------------------------------------------------+\n";
     cout << "  | Codigo Lote:      " << left << setw(47) << e.codigo << "|\n";
     cout << "  | Anio Vencimiento: " << left << setw(47) << e.anioVencimiento << "|\n";
-    cout << "  | Stock (Cajas):    " << left << setw(47) << e.stockCajas << "|\n";
     cout << "  | Categoria:        " << left << setw(47) << (e.categoria == 'C' ? "C (Critico -20%)" : (e.categoria == 'M' ? "M (Medio -10%)" : "E (Estable 0%)")) << "|\n";
     cout << "  | Precio Lista:    $" << left << setw(47) << fixed << setprecision(2) << e.precioLista << "|\n";
     cout << "  | Precio Venta:    $" << left << setw(47) << fixed << setprecision(2) << e.precioVenta << "|\n";
@@ -358,20 +341,19 @@ void mostrarTabla(const Medicamento arr[], int tam) {
         return;
     }
 
-    cout << "\n+-----+--------+----------+-------+-----+--------------+--------------+\n";
-    cout << "| POS | CODIGO | VENCIM.  | STOCK | CAT | PRECIO LISTA | PRECIO VENTA |\n";
-    cout << "+-----+--------+----------+-------+-----+--------------+--------------+\n";
+    cout << "\n+-----+--------+----------+-----+--------------+--------------+\n";
+    cout << "| POS | CODIGO | VENCIM.  | CAT | PRECIO LISTA | PRECIO VENTA |\n";
+    cout << "+-----+--------+----------+-----+--------------+--------------+\n";
 
     cout << right;
     for (int i = 0; i < tam; ++i) {
         cout << "| [" << setw(1) << i << "] | "
              << setw(6) << arr[i].codigo << " |   "
-             << setw(6) << arr[i].anioVencimiento << " | "
-             << setw(5) << arr[i].stockCajas << " |  "
+             << setw(6) << arr[i].anioVencimiento << " |  "
              << arr[i].categoria << "  | $"
              << setw(11) << fixed << setprecision(2) << arr[i].precioLista << " | $"
              << setw(11) << fixed << setprecision(2) << arr[i].precioVenta << " |\n";
     }
-    cout << "+-----+--------+----------+-------+-----+--------------+--------------+\n";
+    cout << "+-----+--------+----------+-----+--------------+--------------+\n";
     cout << "Total medicamentos en inventario: " << tam << ".\n";
 }

@@ -12,7 +12,7 @@ La totalidad del puntaje (**100%**) corresponde a la solución en computadora.
 
 Se entrega una **plantilla base** con `main()`, 4 registros precargados y las funciones de impresión (`mostrarMenu()`, `mostrarFicha()`, `mostrarTabla()`).  
 Tu trabajo consiste en:
-1. Declarar los 6 campos del `struct Medicamento` con tipos primitivos (`int`, `char`, `double`, sin `std::string`) en el **orden exacto** indicado en el enunciado.
+1. Declarar los 5 campos del `struct Medicamento` con tipos primitivos (`int`, `char`, `double`, sin `std::string`) en el **orden exacto** indicado en el enunciado.
 2. Definir los prototipos y programar los **7 módulos algorítmicos** (más la función auxiliar `intercambiar`).
 3. Completar las opciones `1` a `8` del `switch` en `main()` con la lectura, validación de rangos y cálculo de campos derivados (`categoria` y `precioVenta`).
 

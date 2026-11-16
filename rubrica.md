@@ -37,7 +37,7 @@ El código base provisto entrega el esqueleto de `main()`, el arreglo `inventari
 ### Bloque 3: Modificación *in-place* con Clave Primaria Inmutable (15%)
 - **Firma de Referencia:** `bool modificarMedicamento(Medicamento arr[], int tam, const Medicamento &actualizado);`
 - **Criterios de Evaluación:**
-  - **15% (Completo / Excelente):** Reutiliza `buscarPorCodigo(...)` para localizar la celda. Actualiza *in-place* `anioVencimiento`, `stockCajas`, `categoria`, `precioLista` y `precioVenta`, preservando **estrictamente inmutable** `codigo` (PK). Se admite el recálculo de campos derivados tanto dentro del `switch` como dentro de la función. Retorna `true` o `false`.
+  - **15% (Completo / Excelente):** Reutiliza `buscarPorCodigo(...)` para localizar la celda. Actualiza *in-place* `anioVencimiento`, `categoria`, `precioLista` y `precioVenta`, preservando **estrictamente inmutable** `codigo` (PK). Se admite el recálculo de campos derivados tanto dentro del `switch` como dentro de la función. Retorna `true` o `false`.
   - **12% (Aceptable / Funcional):** Modifica correctamente sin alterar la PK usando búsqueda *in-line* (80% del bloque).
   - **0% (Insuficiente):** Modifica la clave primaria, no actualiza derivados o corrompe memoria.
 
