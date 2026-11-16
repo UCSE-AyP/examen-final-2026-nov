@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💊 Examen Final Noviembre 2026 — Sistema de Gestión de Farmacia (AoS) - UCSE</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Paleta de colores institucional UCSE (https://www.ucse.edu.ar/) */
+    :root {
+      --ucse-azul-oscuro: #1f3763;
+      --ucse-azul-medio: #2a5298;
+      --ucse-amarillo: #ffd800;
+      --ucse-cian: #00bfff;
+      --ucse-rosa: #ff007f;
+      --ucse-blanco: #ffffff;
+      --ucse-gris-fondo: #f8f9fa;
+      --ucse-texto: #333333;
+    }
+
+    @font-face {
+      font-family: 'Fira Code';
+      src: local('Consolas'), local('Courier New'), monospace;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ucse-texto);
+      background-color: var(--ucse-gris-fondo);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    code,
+    pre,
+    .console {
+      font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    }
+
+    a {
+      text-decoration: none;
+      color: #464feb;
+    }
+
+    tr th,
+    tr td {
+      border: 1px solid #e6e6e6;
+    }
+
+    tr th {
+      background-color: #f5f5f5;
+      color: #1f3763;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-wrap: balance;
+    }
+
+    p,
+    li,
+    blockquote {
+      text-wrap: pretty;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    /* Encabezado UCSE */
+    .header-ucse {
+      background: linear-gradient(135deg, #1f3763 0%, #2a5298 100%);
+      color: #ffffff;
+      padding: 22px 0;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-ucse::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+      animation: rotate 20s linear infinite;
+    }
+
+    .header-ucse .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-ucse .logo .logo-shield {
+      height: 76px;
+      width: 76px;
+      border-radius: 50%;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffd800;
+      font-size: 34px;
+      border: 2px solid rgba(255, 216, 0, 0.6);
+    }
+
+    .header-ucse .logo .logo-shield:hover {
+      transform: scale(1.08) rotate(4deg);
+      box-shadow: 0 4px 20px rgba(255, 216, 0, 0.45);
+    }
+
+    .header-ucse h1 {
+      margin: 0;
+      font-size: 2.2em;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-ucse .subtitle {
+      font-size: 1.1em;
+      color: #e2e8f0;
+      margin-top: 5px;
+    }
+
+    /* Barra de navegación estilo UCSE */
+    .wp-block-navigation {
+      background: #1f3763;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-menu li {
+      margin: 0;
+    }
+
+    .nav-menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95em;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-menu a:hover {
+      background: #00bfff;
+      color: #ffffff;
+      border-bottom-color: #ffd800;
+    }
+
+    .nav-menu a.active {
+      background: #ff007f;
+      color: #ffffff;
+      border-bottom-color: #ffd800;
+      font-weight: 600;
+    }
+
+    /* Contenedor Principal */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .content-section {
+      background: #ffffff;
+      padding: 32px;
+      margin: 24px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .content-section h1 {
+      color: var(--ucse-azul-oscuro);
+      margin-top: 0;
+      border-bottom: 3px solid var(--ucse-cian);
+      padding-bottom: 12px;
+    }
+
+    /* Header Bar de la Evaluación */
+    .exam-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      border-bottom: 3px solid var(--ucse-cian);
+      padding-bottom: 16px;
+    }
+
+    .exam-badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .main-exam-title {
+      border-bottom: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      color: var(--ucse-azul-oscuro);
+      font-size: 2.0em;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-tema-code {
+      background: linear-gradient(135deg, #1f3763 0%, #2a5298 100%);
+      color: #ffd800;
+      font-size: 1.2em;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      border: 2px solid #ffd800;
+      box-shadow: 0 4px 12px rgba(31, 55, 99, 0.25);
+      text-align: center;
+    }
+
+    /* Alertas y Secciones de Ejercicio */
+    .requirements-alert {
+      background: linear-gradient(135deg, #ffd800 0%, #ffe066 100%);
+      color: #1a1a1a;
+      padding: 20px 24px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border-left: 5px solid #ff007f;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .requirements-alert:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 15px rgba(255, 216, 0, 0.35);
+    }
+
+    .exercise-section {
+      background: #f8f9fa;
+      border: 2px solid #00bfff;
+      border-radius: 8px;
+      padding: 25px;
+      margin: 25px 0;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .exercise-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #00bfff, #ffd800, #ff007f);
+      background-size: 200% 100%;
+      border-radius: 4px 4px 0 0;
+      animation: shimmer 3s linear infinite;
+    }
+
+    .exercise-section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0, 191, 255, 0.18);
+      border-color: #ffd800;
+    }
+
+    .exercise-title {
+      color: #1f3763;
+      margin-top: 0;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 1.35em;
+    }
+
+    .exercise-weight {
+      background: #00bfff;
+      color: #ffffff;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.82em;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-text {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .icon-text i {
+      color: #00bfff;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .requirements-alert .icon-text i {
+      color: #1f3763;
+    }
+
+    /* Misión y Tarjetas de Tareas */
+    .mission-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .mission-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-left: 5px solid var(--ucse-azul-oscuro);
+      border-radius: 8px;
+      padding: 16px 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+
+    .mission-card:hover {
+      transform: translateX(4px);
+      border-left-color: var(--ucse-cian);
+      box-shadow: 0 4px 15px rgba(0, 191, 255, 0.15);
+    }
+
+    .mission-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .mission-card-title {
+      font-weight: 700;
+      color: var(--ucse-azul-oscuro);
+      font-size: 1.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Tooltips Interactivos de Rúbrica */
+    .rubric-pill {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, #1f3763 0%, #2a5298 100%);
+      color: #ffd800;
+      font-weight: 700;
+      font-size: 0.85em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 216, 0, 0.5);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .rubric-pill:hover {
+      background: #ff007f;
+      color: #ffffff;
+      border-color: #ffd800;
+    }
+
+    .rubric-tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      right: 0;
+      width: 270px;
+      background: #1f3763;
+      color: #ffffff;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.82em;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      border: 1px solid #ffd800;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      z-index: 50;
+      pointer-events: none;
+      line-height: 1.4;
+    }
+
+    .rubric-tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #ffd800 transparent transparent transparent;
+    }
+
+    .rubric-pill:hover .rubric-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-4px);
+    }
+
+    /* Tabs de Casos de Prueba */
+    .test-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .tab-btn {
+      background: #ffffff;
+      color: var(--ucse-azul-oscuro);
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: 600;
+      font-size: 0.92em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      background: #f1f5f9;
+      border-color: var(--ucse-cian);
+      color: var(--ucse-azul-medio);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #1f3763 0%, #2a5298 100%);
+      color: #ffffff;
+      border-color: #ffd800;
+      box-shadow: 0 4px 12px rgba(31, 55, 99, 0.25);
+    }
+
+    .tab-content {
+      display: none;
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .test-case-grid {
+      display: grid;
+      grid-template-columns: 4fr 8fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .test-case-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Terminales y Consolas de Código */
+    .terminal-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .terminal-header {
+      background: #1e293b;
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #334155;
+    }
+
+    .terminal-title {
+      font-size: 0.8em;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red {
+      background: #ef4444;
+    }
+
+    .dot-yellow {
+      background: #f59e0b;
+    }
+
+    .dot-green {
+      background: #10b981;
+    }
+
+    .terminal-body {
+      padding: 16px;
+      overflow-x: auto;
+    }
+
+    .console {
+      font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+      font-size: 0.88em;
+      line-height: 1.55;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .console-input {
+      color: #93c5fd;
+    }
+
+    .console-output {
+      color: #4ade80;
+    }
+
+    /* Tablas estilo UCSE */
+    .wp-block-table {
+      margin: 20px 0;
+      border-radius: 8px;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .wp-block-table table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+    }
+
+    .wp-block-table th {
+      background-color: #f5f5f5;
+      color: #1f3763;
+      padding: 14px 15px;
+      text-align: left;
+      font-weight: 600;
+      border: 1px solid #e6e6e6;
+    }
+
+    .wp-block-table td {
+      padding: 12px 15px;
+      border: 1px solid #e6e6e6;
+      color: #333333;
+    }
+
+    .wp-block-table tr:nth-child(even) td {
+      background: #f8f9fa;
+    }
+
+    /* Rúbrica y Sección de Evaluación */
+    .grading-section {
+      background: linear-gradient(135deg, #ff007f 0%, #c90063 100%);
+      color: #ffffff;
+      padding: 28px;
+      border-radius: 8px;
+      margin: 28px 0;
+    }
+
+    .grading-section h2,
+    .grading-section>p {
+      color: #ffffff;
+    }
+
+    .grading-section h2 {
+      margin-top: 0;
+    }
+
+    .grading-section .wp-block-table table {
+      background: #ffffff;
+    }
+
+    .grading-section .wp-block-table th {
+      background-color: #f1f5f9 !important;
+      color: #1f3763 !important;
+      font-weight: 700;
+    }
+
+    .grading-section .wp-block-table td {
+      color: #1e293b !important;
+    }
+
+    .grading-section .wp-block-table td strong {
+      color: #1f3763 !important;
+      font-weight: 700;
+    }
+
+    .grading-section .wp-block-table td:last-child strong {
+      color: #c90063 !important;
+      font-weight: 700;
+      font-size: 1.05em;
+    }
+
+    /* Condiciones Formales */
+    .conditions-section {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-left: 6px solid #1f3763;
+      border-radius: 8px;
+      padding: 24px;
+      margin: 28px 0;
+    }
+
+    .conditions-section h2 {
+      color: #1f3763;
+      margin-top: 0;
+      font-size: 1.35em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Footer */
+    .footer-info {
+      background: #1f3763;
+      color: #ffffff;
+      padding: 22px;
+      text-align: center;
+      margin-top: 40px;
+      border-top: 4px solid #ffd800;
+    }
+
+    .footer-info p {
+      margin: 5px 0;
+      color: #e2e8f0;
+    }
+
+    @media (max-width: 768px) {
+      .header-ucse .logo {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .header-ucse h1 {
+        font-size: 1.8em;
+      }
+
+      .nav-menu {
+        flex-direction: column;
+      }
+
+      .nav-menu a {
+        justify-content: center;
+      }
+
+      .content-section {
+        padding: 20px;
+      }
+
+      .exam-header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+    <script>
+        (function () {
+            const STORAGE_KEY = 'ucse_final_nov_2026_unlocked';
+            const EXPECTED_SIG = 1076444563;
+            const dialog = document.getElementById('ucse-auth-dialog');
+            const form = document.getElementById('ucse-auth-form');
+            const input = document.getElementById('ucse-auth-pass');
+            const errorEl = document.getElementById('ucse-auth-error');
+            const toggleBtn = document.getElementById('ucse-auth-toggle');
+
+            function sig(str) {
+                let h = 2166136261 >>> 0;
+                for (let i = 0; i < str.length; i++) {
+                    h ^= str.charCodeAt(i);
+                    h = Math.imul(h, 16777619) >>> 0;
+                }
+                return h >>> 0;
+            }
+
+            function isUnlocked() {
+                try {
+                    return sessionStorage.getItem(STORAGE_KEY) === '1';
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function markUnlocked() {
+                try {
+                    sessionStorage.setItem(STORAGE_KEY, '1');
+                } catch (e) {}
+            }
+
+            if (isUnlocked()) {
+                document.documentElement.removeAttribute('data-auth-locked');
+                return;
+            }
+
+            document.documentElement.setAttribute('data-auth-locked', 'true');
+            if (dialog && typeof dialog.showModal === 'function' && !dialog.open) {
+                dialog.showModal();
+            }
+
+            dialog.addEventListener('cancel', function (e) {
+                if (!isUnlocked()) {
+                    e.preventDefault();
+                    errorEl.setAttribute('data-visible', 'true');
+                    input.setAttribute('aria-invalid', 'true');
+                    input.focus();
+                }
+            });
+
+            dialog.addEventListener('close', function () {
+                dialog.returnValue = '';
+                if (!isUnlocked()) {
+                    dialog.showModal();
+                }
+            });
+
+            input.addEventListener('input', function () {
+                input.removeAttribute('aria-invalid');
+                errorEl.removeAttribute('data-visible');
+            });
+
+            toggleBtn.addEventListener('click', function () {
+                const showing = input.type === 'text';
+                input.type = showing ? 'password' : 'text';
+                toggleBtn.setAttribute('aria-pressed', String(!showing));
+                toggleBtn.setAttribute('aria-label', showing ? 'Mostrar contraseña' : 'Ocultar contraseña');
+                toggleBtn.textContent = showing ? 'Mostrar' : 'Ocultar';
+                input.focus();
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (sig(input.value.trim()) === EXPECTED_SIG) {
+                    markUnlocked();
+                    document.documentElement.removeAttribute('data-auth-locked');
+                    dialog.close();
+                } else {
+                    input.setAttribute('aria-invalid', 'true');
+                    errorEl.setAttribute('data-visible', 'true');
+                    input.select();
+                    input.focus();
+                }
+            });
+        })();
+    </script>
+</head>
+
+<body class="">
+
+  <!-- Encabezado Institucional UCSE -->
+  <header class="header-ucse">
+    <div class="main-container">
+      <div class="logo">
+        <div class="logo-shield">
+          <i class="fas fa-university"></i>
+        </div>
+        <div>
+          <h1>Universidad Católica de Santiago del Estero</h1>
+          <div class="subtitle">Facultad de Ciencias de la Salud y Tecnologías de la Información • Algoritmos y
+            Programación (2026)</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navegación Sticky estilo UCSE -->
+  <nav class="wp-block-navigation" aria-label="Navegación del examen">
+    <ul class="nav-menu">
+      <li>
+        <a href="index.html">
+          <i class="fas fa-home"></i>
+          <span>Portal General</span>
+        </a>
+      </li>
+      <li>
+        <a href="enunciado.html" class="active">
+          <i class="fas fa-file-code"></i>
+          <span>Enunciado Único</span>
+        </a>
+      </li>
+      <li>
+        <a href="#casos-prueba">
+          <i class="fas fa-vial"></i>
+          <span>Casos de Prueba</span>
+        </a>
+      </li>
+      <li>
+        <a href="#codigo-base">
+          <i class="fas fa-code"></i>
+          <span>Código Base</span>
+        </a>
+      </li>
+      <li>
+        <a href="#rubrica">
+          <i class="fas fa-award"></i>
+          <span>Rúbrica</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Contenido Principal -->
+  <div class="main-container">
+    <div class="content-section">
+
+      <!-- Header del Tema Evaluativo -->
+      <div class="exam-header-bar">
+        <div>
+          <div class="exam-badges">
+            <span class="exercise-weight" style="background: var(--ucse-rosa);">Examen Final Regular — Noviembre
+              2026</span>
+            <span class="exercise-weight" style="background: var(--ucse-azul-medio);">Tema Único — Arreglos de Structs
+              (AoS)</span>
+            <span class="exercise-weight" style="background: #10b981;"><i class="fas fa-laptop-code"></i> 100% C++
+              (Sin Parte Escrita)</span>
+          </div>
+          <h1 class="main-exam-title">
+            <i class="fas fa-clipboard-list"></i> 💊 Sistema de Gestión de Farmacia (AoS)
+          </h1>
+        </div>
+        <div>
+          <div class="badge-tema-code">
+            FINAL NOV<br><small>Farmacia</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contexto del Problema -->
+      <div class="requirements-alert">
+        <div class="icon-text" style="align-items: flex-start;">
+          <i class="fas fa-info-circle"></i>
+          <div>
+            <h3 style="margin: 0 0 8px 0; color: #1f3763; font-size: 1.25em;"><i class="fas fa-book-reader"></i>
+              Contexto de Gestión del Sistema</h3>
+            <div style="font-size: 1.05em; line-height: 1.7; color: #1a1a1a;">
+              <p style="margin: 0;">Sistema de administración de inventario farmacéutico en memoria RAM basado en
+                Arreglo de Estructuras (AoS). Implemente los módulos de gestión algorítmica, ordenamiento, filtrado por
+                categoría y cálculo estadístico sobre el stock de medicamentos.</p>
+
+              <!-- Especificación del Modelo de Datos (Struct) en el Enunciado -->
+              <div class="data-model-card"
+                style="margin-top: 16px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <div
+                  style="background: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                  <span style="font-weight: 700; color: #1e3a8a; font-size: 0.95em;"><i class="fas fa-table"></i>
+                    ESPECIFICACIÓN DEL MODELO: <code>struct Medicamento</code> (A definir por el estudiante)</span>
+                  <span
+                    style="background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 9999px; font-size: 0.8em; font-weight: 600;">Tipos
+                    Primitivos Exclusivos</span>
+                </div>
+                <div style="padding: 14px 16px;">
+                  <p style="margin: 0 0 12px 0; font-size: 0.93em; color: #334155; line-height: 1.5;">
+                    Cada medicamento del inventario está modelado por la estructura <code>Medicamento</code>. Debe
+                    declararla en su código fuente utilizando <strong>exclusivamente tipos de datos primitivos</strong>,
+                    deduciendo el tipo apropiado para cada campo según su descripción y rango:
+                  </p>
+                  <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.88em; text-align: left;">
+                      <thead>
+                        <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1; color: #1e293b;">
+                          <th style="padding: 9px 12px; width: 22%; font-weight: 700;">Campo</th>
+                          <th style="padding: 9px 12px; width: 20%; font-weight: 700;">Origen</th>
+                          <th style="padding: 9px 12px; font-weight: 700;">Descripción y Regla de Negocio</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                          <td style="padding: 9px 12px; font-weight: 600; color: #1e3a8a;"><code>codigo</code></td>
+                          <td style="padding: 9px 12px;"><span
+                              style="background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Ingreso
+                              de datos</span></td>
+                          <td style="padding: 9px 12px; color: #334155; line-height: 1.45;">Número entero positivo y
+                            único (mayor que cero) que identifica a cada lote. No puede repetirse ni modificarse luego
+                            del alta.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                          <td style="padding: 9px 12px; font-weight: 600; color: #1e3a8a;"><code>anioVencimiento</code>
+                          </td>
+                          <td style="padding: 9px 12px;"><span
+                              style="background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Ingreso
+                              de datos</span></td>
+                          <td style="padding: 9px 12px; color: #334155; line-height: 1.45;">Año de vencimiento del lote,
+                            expresado como número entero entre 2026 y 2035 (inclusive).</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                          <td style="padding: 9px 12px; font-weight: 600; color: #1e3a8a;"><code>stockCajas</code></td>
+                          <td style="padding: 9px 12px;"><span
+                              style="background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Ingreso
+                              de datos</span></td>
+                          <td style="padding: 9px 12px; color: #334155; line-height: 1.45;">Cantidad entera de cajas
+                            físicas disponibles en depósito (cero o superior; no se admiten cantidades negativas).</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                          <td style="padding: 9px 12px; font-weight: 600; color: #1e3a8a;"><code>categoria</code></td>
+                          <td style="padding: 9px 12px;"><span
+                              style="background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Calculado</span>
+                          </td>
+                          <td style="padding: 9px 12px; color: #334155; line-height: 1.45;">Carácter clasificador según
+                            la proximidad del vencimiento: <code>'C'</code> (Crítico) si el lote vence en 2026;
+                            <code>'M'</code> (Medio) si vence en 2027 o 2028; <code>'E'</code> (Estable) si vence de
+                            2029 en adelante.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                          <td style="padding: 9px 12px; font-weight: 600; color: #1e3a8a;"><code>precioLista</code></td>
+                          <td style="padding: 9px 12px;"><span
+                              style="background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Ingreso
+                              de datos</span></td>
+                          <td style="padding: 9px 12px; color: #334155; line-height: 1.45;">Importe numérico con
+                            decimales que representa el precio base de lista por caja (debe ser estrictamente mayor que
+                            cero).</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                          <td style="padding: 9px 12px; font-weight: 600; color: #1e3a8a;"><code>precioVenta</code></td>
+                          <td style="padding: 9px 12px;"><span
+                              style="background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 600;">Calculado</span>
+                          </td>
+                          <td style="padding: 9px 12px; color: #334155; line-height: 1.45;">Importe numérico con
+                            decimales resultante según la categoría del lote: 20% de descuento sobre el precio de lista
+                            para categoría Crítica (<code>'C'</code>), 10% de descuento para categoría Media
+                            (<code>'M'</code>), o precio de lista pleno sin descuento para categoría Estable
+                            (<code>'E'</code>).</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div
+                    style="margin-top: 12px; background: #fffbeb; border: 1px solid #fef3c7; border-left: 4px solid #f59e0b; border-radius: 6px; padding: 10px 14px; font-size: 0.9em; color: #92400e;">
+                    <strong><i class="fas fa-exclamation-triangle"></i> Orden Obligatorio de Miembros en la
+                      Estructura:</strong> Declare los campos respetando <strong>estrictamente el mismo orden en que
+                      aparecen en la tabla</strong>. Esto es indispensable para que la carga inicial provista en el
+                    código base compile sin errores de tipos ni desfasajes.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tu Misión (100% C++) -->
+      <div class="exercise-section">
+        <h2 class="exercise-title">
+          <span><i class="fas fa-code"></i> REQUERIMIENTOS DEL SISTEMA (100% C++)</span>
+          <span class="exercise-weight"><i class="fas fa-check-circle"></i> 100% Calificación</span>
+        </h2>
+
+        <div class="requirements-alert"
+          style="background: #f0fdf4; border-left: 5px solid #16a34a; margin-bottom: 24px;">
+          <div class="icon-text" style="align-items: flex-start;">
+            <i class="fas fa-layer-group" style="color: #16a34a;"></i>
+            <div>
+              <h4 style="margin: 0 0 6px 0; color: #166534; font-size: 1.1em;">Alcance del Desarrollo y Diseño Modular
+              </h4>
+              <p style="margin: 0; font-size: 0.95em; line-height: 1.55; color: #14532d;">
+                La plantilla base ya incluye las rutinas de visualización por pantalla (<code>mostrarMenu</code>,
+                <code>mostrarFicha</code> y <code>mostrarTabla</code>) y el lote inicial de medicamentos. A partir de
+                los requerimientos funcionales detallados abajo, deberá declarar la estructura de datos con los tipos
+                primitivos adecuados, resolver la interacción con el usuario dentro de las opciones del menú (validando
+                rangos y calculando los atributos derivados) e implementar las operaciones solicitadas.
+              </p>
+              <p style="margin: 6px 0 0 0; font-size: 0.95em; line-height: 1.5; color: #14532d;">
+                <strong>Reutilización Modular:</strong> Cuando una operación necesite localizar un medicamento o
+                verificar si un código ya existe, reutilice la función de búsqueda del punto 1 en lugar de repetir
+                recorridos manuales dentro de otras funciones.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mission-list">
+
+          <!-- Item 1: Búsqueda por Clave Primaria -->
+          <div class="mission-card">
+            <div class="mission-card-header">
+              <div class="mission-card-title">
+                <i class="fas fa-search"></i> 1. Consulta de un Medicamento por Código
+              </div>
+              <div class="rubric-pill">
+                <span>10%</span>
+                <div class="rubric-tooltip">
+                  <strong>Búsqueda por Clave Única</strong><br>
+                  Localización secuencial por código sin modificar los datos, detención inmediata al hallar coincidencia
+                  e indicación clara cuando no existe.
+                </div>
+              </div>
+            </div>
+            <ul style="margin: 4px 0 0 0; padding-left: 20px; font-size: 0.92em; line-height: 1.55; color: #334155;">
+              <li><strong>Objetivo:</strong> Localizar un medicamento dentro de los registros activos del inventario a
+                partir de su código identificatorio.</li>
+              <li><strong>Comportamiento esperado:</strong> Recorrer únicamente los registros vigentes en modo de solo
+                lectura y detener la búsqueda apenas encuentre la coincidencia.</li>
+              <li><strong>Resultado esperado:</strong> Informar la ubicación que ocupa el medicamento encontrado dentro
+                de la colección, o devolver un indicador negativo convencional (<code>-1</code>) si el código no existe.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Item 2: Alta / Inserción con Unicidad de Clave -->
+          <div class="mission-card">
+            <div class="mission-card-header">
+              <div class="mission-card-title">
+                <i class="fas fa-plus-circle"></i> 2. Alta e Inserción en una Posición Determinada
+              </div>
+              <div class="rubric-pill">
+                <span>15%</span>
+                <div class="rubric-tooltip">
+                  <strong>Alta con Unicidad y Resguardo</strong><br>
+                  Control de cupo disponible, validez de la posición elegida, rechazo de códigos duplicados reutilizando
+                  la búsqueda y desplazamiento ordenado.
+                </div>
+              </div>
+            </div>
+            <ul style="margin: 4px 0 0 0; padding-left: 20px; font-size: 0.92em; line-height: 1.55; color: #334155;">
+              <li><strong>Objetivo:</strong> Incorporar un nuevo medicamento (con su categoría y precio de venta ya
+                calculados según las reglas del negocio) en una ubicación puntual indicada por el usuario.</li>
+              <li><strong>Resguardos obligatorios:</strong> La carga debe rechazarse sin alterar el inventario si ya se
+                alcanzó la capacidad máxima permitida, si la posición indicada está fuera del rango válido de la
+                secuencia actual (negativa o posterior al final vigente) o si el código ya se encuentra registrado.</li>
+              <li><strong>Resultado esperado:</strong> Si las validaciones se cumplen, abrir espacio desplazando los
+                elementos posteriores hacia adelante sin perder datos, ubicar allí el nuevo medicamento, actualizar la
+                cantidad activa e informar si la operación se concretó o fue rechazada.</li>
+            </ul>
+          </div>
+
+          <!-- Item 3: Modificación de Atributos con Clave Inmutable -->
+          <div class="mission-card">
+            <div class="mission-card-header">
+              <div class="mission-card-title">
+                <i class="fas fa-edit"></i> 3. Modificación de un Medicamento Existente
+              </div>
+              <div class="rubric-pill">
+                <span>15%</span>
+                <div class="rubric-tooltip">
+                  <strong>Modificación con Clave Inmutable</strong><br>
+                  Localización previa reutilizando la búsqueda, actualización directa de campos editables, recálculo de
+                  derivados y clave identificatoria inalterable.
+                </div>
+              </div>
+            </div>
+            <ul style="margin: 4px 0 0 0; padding-left: 20px; font-size: 0.92em; line-height: 1.55; color: #334155;">
+              <li><strong>Objetivo:</strong> Actualizar la información de un medicamento existente a partir de su código
+                identificatorio.</li>
+              <li><strong>Resguardos obligatorios:</strong> Si el código buscado no pertenece a ningún registro vigente,
+                debe informarse la ausencia sin modificar el inventario. El código de identificación original debe
+                permanecer estrictamente inalterado.</li>
+              <li><strong>Resultado esperado:</strong> Reemplazar únicamente los atributos editables (año de
+                vencimiento, stock en cajas y precio de lista), recalculando automáticamente su categoría y su precio de
+                venta, e informar si la actualización tuvo éxito.</li>
+            </ul>
+          </div>
+
+          <!-- Item 4: Baja Física con Compactación del Arreglo -->
+          <div class="mission-card">
+            <div class="mission-card-header">
+              <div class="mission-card-title">
+                <i class="fas fa-trash-alt"></i> 4. Baja Definitiva con Compactación de Datos
+              </div>
+              <div class="rubric-pill">
+                <span>15%</span>
+                <div class="rubric-tooltip">
+                  <strong>Baja Física y Compactación</strong><br>
+                  Localización reutilizando la búsqueda, eliminación real con desplazamiento contiguo para no dejar
+                  huecos vacíos y actualización del total activo.
+                </div>
+              </div>
+            </div>
+            <ul style="margin: 4px 0 0 0; padding-left: 20px; font-size: 0.92em; line-height: 1.55; color: #334155;">
+              <li><strong>Objetivo:</strong> Eliminar permanentemente del inventario un medicamento indicado por su
+                código de lote.</li>
+              <li><strong>Resguardos obligatorios:</strong> Si el código no existe entre los registros activos, no se
+                debe modificar nada y se informará que no pudo realizarse la baja.</li>
+              <li><strong>Resultado esperado:</strong> Al hallarlo, quitarlo y compactar inmediatamente los elementos
+                posteriores desplazándolos una posición hacia atrás para no dejar huecos intermedios, actualizar la
+                cantidad activa de medicamentos e informar el resultado de la operación.</li>
+            </ul>
+          </div>
+
+          <!-- Item 5: Ordenamiento Burbuja en C++ -->
+          <div class="mission-card">
+            <div class="mission-card-header">
+              <div class="mission-card-title">
+                <i class="fas fa-sort-amount-down-alt"></i> 5. Reordenamiento del Inventario (Burbuja Mejorada)
+              </div>
+              <div class="rubric-pill">
+                <span>20%</span>
+                <div class="rubric-tooltip">
+                  <strong>Burbuja Mejorada Ascendente</strong><br>
+                  Implementación manual con detención temprana ante pasadas sin cambios e intercambio completo de
+                  registros mediante módulo auxiliar propio.
+                </div>
+              </div>
+            </div>
+            <ul style="margin: 4px 0 0 0; padding-left: 20px; font-size: 0.92em; line-height: 1.55; color: #334155;">
+              <li><strong>Objetivo:</strong> Reorganizar todos los registros activos del inventario en orden
+                <strong>ascendente</strong> (de menor a mayor) tomando como criterio su <strong>precio de
+                  lista</strong>.</li>
+              <li><strong>Método exigido:</strong> Implementar manualmente el algoritmo de <strong>Burbuja
+                  Mejorada</strong>, finalizando anticipadamente si en una pasada completa no resulta necesario efectuar
+                ningún intercambio.</li>
+              <li><strong>Integridad de los datos:</strong> Cada permutación debe mover el registro completo con todos
+                sus atributos juntos, delegando el intercambio en un módulo auxiliar propio que trabaje por referencia
+                sobre ambos registros.</li>
+            </ul>
+          </div>
+
+          <!-- Item 6: Filtrado por Categoría -->
+          <div class="mission-card" style="border-left-color: var(--ucse-cian);">
+            <div class="mission-card-header">
+              <div class="mission-card-title">
+                <i class="fas fa-filter"></i> 6. Filtrado y Visualización por Categoría
+              </div>
+              <div class="rubric-pill">
+                <span>10%</span>
+                <div class="rubric-tooltip">
+                  <strong>Filtrado por Categoría</strong><br>
+                  Consulta de solo lectura que exhibe cada coincidencia aprovechando la vista de ficha provista e
+                  informa la cantidad encontrada.
+                </div>
+              </div>
+            </div>
+            <ul style="margin: 4px 0 0 0; padding-left: 20px; font-size: 0.92em; line-height: 1.55; color: #334155;">
+              <li><strong>Objetivo:</strong> Listar todos los medicamentos vigentes pertenecientes a una categoría
+                elegida por el usuario (<code>'C'</code>, <code>'M'</code> o <code>'E'</code>).</li>
+              <li><strong>Comportamiento esperado:</strong> Recorrer los elementos activos sin alterar el inventario;
+                por cada coincidencia, invocar la función de ficha individual ya provista en la plantilla base para
+                exhibir sus datos en pantalla y contabilizar los resultados.</li>
+              <li><strong>Resultado esperado:</strong> Informar cuántos medicamentos coincidieron con la categoría
+                consultada (o dar el aviso correspondiente cuando no existan coincidencias).</li>
+            </ul>
+          </div>
+
+          <!-- Item 7: Cálculo Estadístico por Categoría con Doble Guarda Defensiva -->
+          <div class="mission-card" style="border-left-color: var(--ucse-rosa);">
+            <div class="mission-card-header">
+              <div class="mission-card-title" style="color: var(--ucse-rosa);">
+                <i class="fas fa-chart-line"></i> 7. Cálculo de Promedio Estadístico por Categoría
+              </div>
+              <div class="rubric-pill" style="background: var(--ucse-rosa);">
+                <span>15%</span>
+                <div class="rubric-tooltip">
+                  <strong>Estadística Segura por Categoría</strong><br>
+                  Cálculo de solo lectura sobre la métrica solicitada, protegido frente a inventario vacío o categoría
+                  sin registros activos.
+                </div>
+              </div>
+            </div>
+            <ul style="margin: 4px 0 0 0; padding-left: 20px; font-size: 0.92em; line-height: 1.55; color: #334155;">
+              <li><strong>Objetivo:</strong> Calcular el promedio aritmético del <strong>precio de venta</strong>
+                considerando únicamente los medicamentos activos de la categoría indicada por el usuario.</li>
+              <li><strong>Resguardos obligatorios:</strong> La operación no debe modificar el inventario y debe
+                protegerse ante cualquier posibilidad de división por cero: tanto si el inventario estuviera vacío como
+                si no hubiera ningún medicamento activo de la categoría buscada, debe devolver cero (<code>0.0</code>)
+                de forma segura.</li>
+              <li><strong>Resultado esperado:</strong> Entregar el promedio en punto flotante para presentarlo en
+                pantalla con dos decimales.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Casos de Prueba Formales -->
+      <div class="exercise-section" id="casos-prueba">
+        <h2 class="exercise-title">
+          <span><i class="fas fa-vial"></i> CASOS DE PRUEBA (EJECUCIONES ESPERADAS)</span>
+          <span class="exercise-weight">4 Casos de Verificación</span>
+        </h2>
+
+        <p style="margin-bottom: 8px;">
+          Verifique que el comportamiento, los datos calculados y el orden de los registros coincidan con los siguientes
+          casos de prueba. Se admitirán diferencias menores de formato en textos informativos.
+        </p>
+        <div
+          style="margin-bottom: 14px; padding: 10px 14px; background: #eff6ff; border-left: 4px solid #3b82f6; border-radius: 4px; font-size: 0.93em; color: #1e40af;">
+          <strong><i class="fas fa-info-circle"></i> Nota sobre Pruebas:</strong> Cada caso de prueba debe ejecutarse de
+          manera independiente, reiniciando el programa con los cuatro registros iniciales. Los números iniciales y
+          finales de cada entrada corresponden a opciones del menú. Los casos mostrados son ejemplos de verificación y
+          no constituyen el conjunto completo de pruebas utilizado para evaluar la solución.
+        </div>
+
+        <div class="test-tabs" id="tabs-container">
+          <button type="button" onclick="switchTab(0)" class="tab-btn active">
+            <i class="fas fa-terminal"></i> Caso 1: Alta en Posición
+          </button>
+          <button type="button" onclick="switchTab(1)" class="tab-btn">
+            <i class="fas fa-terminal"></i> Caso 2: Búsqueda y Modificación
+          </button>
+          <button type="button" onclick="switchTab(2)" class="tab-btn">
+            <i class="fas fa-terminal"></i> Caso 3: Baja con Compactación
+          </button>
+          <button type="button" onclick="switchTab(3)" class="tab-btn">
+            <i class="fas fa-terminal"></i> Caso 4: Orden, Filtro y Estadística
+          </button>
+        </div>
+
+        <div id="tab-contents">
+          <!-- Caso 1 -->
+          <div class="tab-content active">
+            <div class="test-case-grid">
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-title" style="color: #60a5fa;"><i class="fas fa-keyboard"></i> Entrada (Simulada)
+                  </div>
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                </div>
+                <div class="terminal-body">
+                  <pre class="console console-input">3
+2
+250
+2026
+18
+6000.0
+1
+0</pre>
+                </div>
+              </div>
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-title" style="color: #4ade80;"><i class="fas fa-desktop"></i> Salida Esperada por
+                    Pantalla</div>
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                </div>
+                <div class="terminal-body">
+                  <pre class="console console-output">&gt;&gt;&gt; REGISTRO / INSERCION DE MEDICAMENTO EN POSICION &lt;&lt;&lt;
+  Ingrese posicion donde desea insertar [0 .. 4]: 2
+  Ingrese Codigo del medicamento (entero &gt; 0): 250
+  Ingrese Anio de vencimiento [2026..2035]: 2026
+  Ingrese Stock en cajas (&gt;= 0): 18
+  Ingrese Precio de Lista (&gt; 0): $6000.0
+
+  [OK] Medicamento registrado exitosamente en la celda [2]. Total: 5/15
+
++-----+--------+----------+-------+-----+--------------+--------------+
+| POS | CODIGO | VENCIM.  | STOCK | CAT | PRECIO LISTA | PRECIO VENTA |
++-----+--------+----------+-------+-----+--------------+--------------+
+| [0] |    105 |     2027 |    40 |  M  | $    8000.00 | $    7200.00 |
+| [1] |    210 |     2030 |    15 |  E  | $   12000.00 | $   12000.00 |
+| [2] |    250 |     2026 |    18 |  C  | $    6000.00 | $    4800.00 |
+| [3] |    308 |     2026 |    25 |  C  | $    5000.00 | $    4000.00 |
+| [4] |    412 |     2028 |    60 |  M  | $    9500.00 | $    8550.00 |
++-----+--------+----------+-------+-----+--------------+--------------+
+Total medicamentos en inventario: 5.
+
+  [SISTEMA]: Sesion finalizada. Fin del programa.</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caso 2 -->
+          <div class="tab-content">
+            <div class="test-case-grid">
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-title" style="color: #60a5fa;"><i class="fas fa-keyboard"></i> Entrada (Simulada)
+                  </div>
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                </div>
+                <div class="terminal-body">
+                  <pre class="console console-input">4
+105
+2029
+55
+10000.0
+2
+105
+0</pre>
+                </div>
+              </div>
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-title" style="color: #4ade80;"><i class="fas fa-desktop"></i> Salida Esperada por
+                    Pantalla</div>
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                </div>
+                <div class="terminal-body">
+                  <pre class="console console-output">&gt;&gt;&gt; MODIFICACION DE MEDICAMENTO (UPDATE / PK INMUTABLE) &lt;&lt;&lt;
+  Ingrese Codigo del medicamento a modificar: 105
+  Modificando medicamento con Codigo: 105 (inalterable)
+  Nuevo Anio de vencimiento [2026..2035]: 2029
+  Nuevo Stock en cajas (&gt;= 0): 55
+  Nuevo Precio de Lista (&gt; 0): $10000.0
+
+  [OK] Datos del medicamento modificados exitosamente.
+
+&gt;&gt;&gt; CONSULTA DE MEDICAMENTO POR CODIGO &lt;&lt;&lt;
+  Ingrese Codigo a buscar: 105
+  [OK] Medicamento localizado en celda [0]:
+  +------------------------------------------------------------------+
+  | FICHA DE MEDICAMENTO EN INVENTARIO                               |
+  +------------------------------------------------------------------+
+  | Codigo Lote:      105                                            |
+  | Anio Vencimiento: 2029                                           |
+  | Stock (Cajas):    55                                             |
+  | Categoria:        E (Estable 0%)                                 |
+  | Precio Lista:    $10000.00                                       |
+  | Precio Venta:    $10000.00                                       |
+  +------------------------------------------------------------------+
+
+  [SISTEMA]: Sesion finalizada. Fin del programa.</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caso 3 -->
+          <div class="tab-content">
+            <div class="test-case-grid">
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-title" style="color: #60a5fa;"><i class="fas fa-keyboard"></i> Entrada (Simulada)
+                  </div>
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                </div>
+                <div class="terminal-body">
+                  <pre class="console console-input">5
+210
+1
+0</pre>
+                </div>
+              </div>
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-title" style="color: #4ade80;"><i class="fas fa-desktop"></i> Salida Esperada por
+                    Pantalla</div>
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                </div>
+                <div class="terminal-body">
+                  <pre class="console console-output">&gt;&gt;&gt; BAJA FISICA DE MEDICAMENTO (DELETE / COMPACTACION) &lt;&lt;&lt;
+  Ingrese Codigo del medicamento a dar de baja: 210
+
+  [OK] Registro eliminado y arreglo compactado correctamente. Total activos: 3
+
++-----+--------+----------+-------+-----+--------------+--------------+
+| POS | CODIGO | VENCIM.  | STOCK | CAT | PRECIO LISTA | PRECIO VENTA |
++-----+--------+----------+-------+-----+--------------+--------------+
+| [0] |    105 |     2027 |    40 |  M  | $    8000.00 | $    7200.00 |
+| [1] |    308 |     2026 |    25 |  C  | $    5000.00 | $    4000.00 |
+| [2] |    412 |     2028 |    60 |  M  | $    9500.00 | $    8550.00 |
++-----+--------+----------+-------+-----+--------------+--------------+
+Total medicamentos en inventario: 3.
+
+  [SISTEMA]: Sesion finalizada. Fin del programa.</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caso 4 -->
+          <div class="tab-content">
+            <div class="test-case-grid">
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-title" style="color: #60a5fa;"><i class="fas fa-keyboard"></i> Entrada (Simulada)
+                  </div>
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                </div>
+                <div class="terminal-body">
+                  <pre class="console console-input">6
+7
+M
+8
+M
+0</pre>
+                </div>
+              </div>
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-title" style="color: #4ade80;"><i class="fas fa-desktop"></i> Salida Esperada por
+                    Pantalla</div>
+                  <div class="terminal-dots">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                </div>
+                <div class="terminal-body">
+                  <pre class="console console-output">&gt;&gt;&gt; ORDENAMIENTO BURBUJA (ASCENDENTE POR PRECIO DE LISTA) &lt;&lt;&lt;
+  [OK] Inventario ordenado de menor a mayor segun precio de lista con exito.
+
++-----+--------+----------+-------+-----+--------------+--------------+
+| POS | CODIGO | VENCIM.  | STOCK | CAT | PRECIO LISTA | PRECIO VENTA |
++-----+--------+----------+-------+-----+--------------+--------------+
+| [0] |    308 |     2026 |    25 |  C  | $    5000.00 | $    4000.00 |
+| [1] |    105 |     2027 |    40 |  M  | $    8000.00 | $    7200.00 |
+| [2] |    412 |     2028 |    60 |  M  | $    9500.00 | $    8550.00 |
+| [3] |    210 |     2030 |    15 |  E  | $   12000.00 | $   12000.00 |
++-----+--------+----------+-------+-----+--------------+--------------+
+Total medicamentos en inventario: 4.
+
+&gt;&gt;&gt; FILTRADO DE MEDICAMENTOS POR CATEGORIA &lt;&lt;&lt;
+  Ingrese Categoria a filtrar (C: Critico, M: Medio, E: Estable): M
+  +------------------------------------------------------------------+
+  | FICHA DE MEDICAMENTO EN INVENTARIO                               |
+  +------------------------------------------------------------------+
+  | Codigo Lote:      105                                            |
+  | Anio Vencimiento: 2027                                           |
+  | Stock (Cajas):    40                                             |
+  | Categoria:        M (Medio -10%)                                 |
+  | Precio Lista:    $8000.00                                        |
+  | Precio Venta:    $7200.00                                        |
+  +------------------------------------------------------------------+
+  +------------------------------------------------------------------+
+  | FICHA DE MEDICAMENTO EN INVENTARIO                               |
+  +------------------------------------------------------------------+
+  | Codigo Lote:      412                                            |
+  | Anio Vencimiento: 2028                                           |
+  | Stock (Cajas):    60                                             |
+  | Categoria:        M (Medio -10%)                                 |
+  | Precio Lista:    $9500.00                                        |
+  | Precio Venta:    $8550.00                                        |
+  +------------------------------------------------------------------+
+  [OK] Se encontraron 2 medicamento(s) en la categoria 'M'.
+
+&gt;&gt;&gt; REPORTE ESTADISTICO: PROMEDIO DE PRECIO DE VENTA POR CATEGORIA &lt;&lt;&lt;
+  Ingrese Categoria a promediar (C: Critico, M: Medio, E: Estable): M
+  [RESULTADO] Promedio de precio de venta (Categoria 'M'): $7875.00
+
+  [SISTEMA]: Sesion finalizada. Fin del programa.</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guía de Comprobación Defensiva -->
+        <div
+          style="margin-top: 24px; background: #fff1f2; border: 1px solid #fecdd3; border-left: 5px solid #e11d48; border-radius: 8px; padding: 14px 18px;">
+          <h4 style="margin: 0 0 8px 0; color: #9f1239; font-size: 1.05em;"><i class="fas fa-shield-alt"></i> Guía de
+            Comprobación Defensiva (Casos Límite y Negativos):</h4>
+          <p style="margin: 0 0 10px 0; font-size: 0.9em; color: #881337;">
+            Verifique la robustez de sus funciones implementadas ante las siguientes situaciones límite:
+          </p>
+          <div style="overflow-x: auto;">
+            <table
+              style="width: 100%; border-collapse: collapse; font-size: 0.88em; text-align: left; background: #ffffff; border-radius: 4px; overflow: hidden;">
+              <thead>
+                <tr style="background: #ffe4e6; color: #881337; border-bottom: 2px solid #fda4af;">
+                  <th style="padding: 8px 12px; width: 25%;">Escenario Evaluado</th>
+                  <th style="padding: 8px 12px; width: 35%;">Entrada / Condición de Prueba</th>
+                  <th style="padding: 8px 12px;">Comportamiento y Retorno Esperado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #fecdd3;">
+                  <td style="padding: 7px 12px; font-weight: 600; color: #9f1239;">Código Duplicado</td>
+                  <td style="padding: 7px 12px;">Intentar registrar un lote cuyo código ya existe (ej. <code>105</code>)
+                  </td>
+                  <td style="padding: 7px 12px;">Rechazar la operación sin sobrescribir ni duplicar registros; el total
+                    activo no varía.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #fecdd3;">
+                  <td style="padding: 7px 12px; font-weight: 600; color: #9f1239;">Ubicación Fuera de Rango</td>
+                  <td style="padding: 7px 12px;">Intentar insertar en una posición negativa o posterior al final de los
+                    registros vigentes</td>
+                  <td style="padding: 7px 12px;">Rechazar el alta sin desplazar elementos ni alterar el inventario.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #fecdd3;">
+                  <td style="padding: 7px 12px; font-weight: 600; color: #9f1239;">Capacidad Completa</td>
+                  <td style="padding: 7px 12px;">Intentar registrar un lote cuando ya se ocuparon los 15 lugares
+                    disponibles</td>
+                  <td style="padding: 7px 12px;">Rechazar la operación informando que no queda cupo disponible.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #fecdd3;">
+                  <td style="padding: 7px 12px; font-weight: 600; color: #9f1239;">Registro Inexistente</td>
+                  <td style="padding: 7px 12px;">Consultar, modificar o dar de baja un código que no está cargado (ej.
+                    <code>9999</code>)</td>
+                  <td style="padding: 7px 12px;">Detectar la ausencia e informar al usuario sin alterar ningún registro
+                    existente.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 7px 12px; font-weight: 600; color: #9f1239;">Sin Coincidencias o Vacío</td>
+                  <td style="padding: 7px 12px;">Filtrar o calcular el promedio cuando el inventario está vacío o no hay
+                    registros de esa categoría</td>
+                  <td style="padding: 7px 12px;">Informar ausencia de coincidencias y devolver un promedio seguro
+                    (<code>0.00</code>) sin fallos por división por cero.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Código Base C++ con Structs -->
+      <div class="exercise-section" id="codigo-base">
+        <h2 class="exercise-title">
+          <span><i class="fas fa-file-code"></i> CÓDIGO BASE C++ CON STRUCTS</span>
+          <span class="exercise-weight" style="background: var(--ucse-azul-oscuro);"><i class="fas fa-code-branch"></i>
+            Plantilla Modular</span>
+        </h2>
+        <p style="margin-bottom: 16px;">
+          Inicie su desarrollo copiando la siguiente plantilla oficial con el arreglo precargado, el esqueleto del menú
+          y las vistas pre-implementadas:
+        </p>
+        <div class="terminal-box">
+          <div class="terminal-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="terminal-title" style="color: #ffd800;"><i class="fab fa-cuttlefish"></i> codigo_base_nov.cpp
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <button type="button"
+                onclick="navigator.clipboard.writeText(document.getElementById('code-plantilla').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> ¡Copiado!'; setTimeout(() => this.innerHTML='<i class=\'fas fa-copy\'></i> Copiar Plantilla', 2000);"
+                style="background: #334155; color: #f8fafc; border: 1px solid #475569; border-radius: 4px; padding: 4px 10px; font-size: 0.78em; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fas fa-copy"></i> Copiar Plantilla
+              </button>
+              <div class="terminal-dots">
+                <span class="terminal-dot dot-red"></span>
+                <span class="terminal-dot dot-yellow"></span>
+                <span class="terminal-dot dot-green"></span>
+              </div>
+            </div>
+          </div>
+          <div class="terminal-body" style="max-height: 400px; overflow-y: auto;">
+            <pre id="code-plantilla" class="console" style="color: #e2e8f0;">#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+// =========================================================================
+// DEFINICION DEL REGISTRO
+// TODO: El estudiante debe declarar la estructura segun la especificacion
+// detallada en el enunciado
+// =========================================================================
+
+// =========================================================================
+// PROTOTIPOS DEL ESTUDIANTE: Declare aqui los prototipos solicitados
+// =========================================================================
+
+// Modulos meramente de escritura pre-implementados
+void mostrarMenu();
+void mostrarFicha(const Medicamento &amp;e);
+void mostrarTabla(const Medicamento arr[], int tam);
+
+int main() {
+    const int CAPACIDAD = 15;
+    Medicamento inventario[CAPACIDAD] = {
+        {105, 2027, 40, 'M', 8000.0,  7200.0},
+        {210, 2030, 15, 'E', 12000.0, 12000.0},
+        {308, 2026, 25, 'C', 5000.0,  4000.0},
+        {412, 2028, 60, 'M', 9500.0,  8550.0}
+    };
+    int tam = 4;
+
+    int opcion = 0;
+    do {
+        mostrarMenu();
+        cout &lt;&lt; "  Seleccione una opcion [1-8, 0 para salir]: ";
+        if (!(cin &gt;&gt; opcion)) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            continue;
+        }
+
+        cout &lt;&lt; "\n----------------------------------------------------------------------\n";
+        switch (opcion) {
+            case 1:
+                // TODO: Implementar por el estudiante
+                break;
+            case 2:
+                // TODO: Implementar por el estudiante
+                break;
+            case 3:
+                // TODO: Implementar por el estudiante
+                break;
+            case 4:
+                // TODO: Implementar por el estudiante
+                break;
+            case 5:
+                // TODO: Implementar por el estudiante
+                break;
+            case 6:
+                // TODO: Implementar por el estudiante
+                break;
+            case 7:
+                // TODO: Implementar por el estudiante
+                break;
+            case 8:
+                // TODO: Implementar por el estudiante
+                break;
+            case 0:
+                cout &lt;&lt; "  [SISTEMA]: Sesion finalizada. Fin del programa.\n";
+                break;
+            default:
+                cout &lt;&lt; "  [!] Opcion no valida. Seleccione una opcion valida del menu [0 a 8].\n";
+                break;
+        }
+    } while (opcion != 0);
+
+    return 0;
+}
+
+// =========================================================================
+// ESPACIO PARA DESARROLLO DE FUNCIONES POR PARTE DEL ESTUDIANTE
+// (Implemente aqui las funciones completas solicitadas en la consigna)
+// =========================================================================
+
+// =========================================================================
+// MODULOS DE ESCRITURA PRE-IMPLEMENTADOS
+// =========================================================================
+
+void mostrarMenu() {
+    cout &lt;&lt; "\n======================================================================\n";
+    cout &lt;&lt; "         SISTEMA DE GESTION DE FARMACIA (ARRAY OF STRUCTS)            \n";
+    cout &lt;&lt; "======================================================================\n";
+    cout &lt;&lt; "  1. Listar Inventario Completo (Formato Tabular)\n";
+    cout &lt;&lt; "  2. Consultar Medicamento por Codigo (Read)\n";
+    cout &lt;&lt; "  3. Registrar Medicamento en Posicion (Create / Right-Shift)\n";
+    cout &lt;&lt; "  4. Modificar Medicamento Existente (Update / PK Inmutable)\n";
+    cout &lt;&lt; "  5. Dar de Baja Fisica (Delete / Left-Shift)\n";
+    cout &lt;&lt; "  6. Ordenar por Precio Lista (Burbuja Ascendente)\n";
+    cout &lt;&lt; "  7. Filtrar Medicamentos por Categoria (C / M / E)\n";
+    cout &lt;&lt; "  8. Calcular Promedio de Precio Venta por Categoria (Estadistica)\n";
+    cout &lt;&lt; "  0. Salir\n";
+    cout &lt;&lt; "======================================================================\n";
+}
+
+void mostrarFicha(const Medicamento &amp;e) {
+    cout &lt;&lt; "  +------------------------------------------------------------------+\n";
+    cout &lt;&lt; "  | FICHA DE MEDICAMENTO EN INVENTARIO                               |\n";
+    cout &lt;&lt; "  +------------------------------------------------------------------+\n";
+    cout &lt;&lt; "  | Codigo Lote:      " &lt;&lt; left &lt;&lt; setw(47) &lt;&lt; e.codigo &lt;&lt; "|\n";
+    cout &lt;&lt; "  | Anio Vencimiento: " &lt;&lt; left &lt;&lt; setw(47) &lt;&lt; e.anioVencimiento &lt;&lt; "|\n";
+    cout &lt;&lt; "  | Stock (Cajas):    " &lt;&lt; left &lt;&lt; setw(47) &lt;&lt; e.stockCajas &lt;&lt; "|\n";
+    cout &lt;&lt; "  | Categoria:        " &lt;&lt; left &lt;&lt; setw(47) &lt;&lt; (e.categoria == 'C' ? "C (Critico -20%)" : (e.categoria == 'M' ? "M (Medio -10%)" : "E (Estable 0%)")) &lt;&lt; "|\n";
+    cout &lt;&lt; "  | Precio Lista:    $" &lt;&lt; left &lt;&lt; setw(47) &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; e.precioLista &lt;&lt; "|\n";
+    cout &lt;&lt; "  | Precio Venta:    $" &lt;&lt; left &lt;&lt; setw(47) &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; e.precioVenta &lt;&lt; "|\n";
+    cout &lt;&lt; "  +------------------------------------------------------------------+\n" &lt;&lt; right;
+}
+
+void mostrarTabla(const Medicamento arr[], int tam) {
+    if (tam == 0) {
+        cout &lt;&lt; "  [!] El inventario de farmacia esta vacio (tam = 0).\n";
+        return;
+    }
+
+    cout &lt;&lt; "\n+-----+--------+----------+-------+-----+--------------+--------------+\n";
+    cout &lt;&lt; "| POS | CODIGO | VENCIM.  | STOCK | CAT | PRECIO LISTA | PRECIO VENTA |\n";
+    cout &lt;&lt; "+-----+--------+----------+-------+-----+--------------+--------------+\n";
+
+    cout &lt;&lt; right;
+    for (int i = 0; i &lt; tam; ++i) {
+        cout &lt;&lt; "| [" &lt;&lt; setw(1) &lt;&lt; i &lt;&lt; "] | "
+             &lt;&lt; setw(6) &lt;&lt; arr[i].codigo &lt;&lt; " |   "
+             &lt;&lt; setw(6) &lt;&lt; arr[i].anioVencimiento &lt;&lt; " | "
+             &lt;&lt; setw(5) &lt;&lt; arr[i].stockCajas &lt;&lt; " |  "
+             &lt;&lt; arr[i].categoria &lt;&lt; "  | $"
+             &lt;&lt; setw(11) &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; arr[i].precioLista &lt;&lt; " | $"
+             &lt;&lt; setw(11) &lt;&lt; fixed &lt;&lt; setprecision(2) &lt;&lt; arr[i].precioVenta &lt;&lt; " |\n";
+    }
+    cout &lt;&lt; "+-----+--------+----------+-------+-----+--------------+--------------+\n";
+    cout &lt;&lt; "Total medicamentos en inventario: " &lt;&lt; tam &lt;&lt; ".\n";
+}
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rúbrica Oficial de Evaluación (100% C++) -->
+      <div class="grading-section" id="rubrica">
+        <h2><i class="fas fa-award"></i> RÚBRICA DE EVALUACIÓN OFICIAL (100% C++)</h2>
+        <p>
+          La evaluación es íntegramente práctica en computadora. Se ponderan los 7 bloques algorítmicos y la función
+          auxiliar de intercambio sobre el arreglo de estructuras:
+        </p>
+        <div class="wp-block-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Bloque Evaluado</th>
+                <th>Criterio Técnico y Pedagógico</th>
+                <th>Ponderación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Búsqueda por Código</strong></td>
+                <td>Localización secuencial por clave única sin alterar el inventario, detención inmediata al hallar
+                  coincidencia e indicación clara ante ausencia.</td>
+                <td><strong>10%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>2. Alta en Posición con Unicidad</strong></td>
+                <td>Resguardo de capacidad máxima y posición válida, rechazo de códigos duplicados reutilizando la
+                  búsqueda, desplazamiento ordenado y actualización del total activo.</td>
+                <td><strong>15%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>3. Modificación con Clave Inmutable</strong></td>
+                <td>Reutilización modular de la búsqueda para ubicar el lote, actualización de campos editables con
+                  recálculo de categoría y precio de venta, y código original inalterado.</td>
+                <td><strong>15%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>4. Baja Física con Compactación</strong></td>
+                <td>Reutilización modular de la búsqueda, eliminación real con desplazamiento contiguo sin dejar huecos
+                  y actualización del total activo.</td>
+                <td><strong>15%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>5. Ordenamiento Burbuja Mejorada Ascendente</strong></td>
+                <td>Implementación manual con detención anticipada cuando no haya intercambios en una pasada, orden
+                  ascendente por precio de lista y permutación de registros completos mediante módulo auxiliar.</td>
+                <td><strong>20%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>6. Filtrado por Categoría</strong></td>
+                <td>Consulta de solo lectura para la categoría elegida, visualización mediante la vista de ficha
+                  provista y conteo/aviso de coincidencias.</td>
+                <td><strong>10%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>7. Promedio Estadístico por Categoría</strong></td>
+                <td>Acumulación de solo lectura del precio de venta para la categoría elegida y protección completa
+                  frente a división por cero ante lista vacía o sin coincidencias.</td>
+                <td><strong>15%</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Condiciones Formales de Desarrollo -->
+      <div class="conditions-section">
+        <h2><i class="fas fa-calendar-check"></i> CONDICIONES FORMALES DE DESARROLLO Y EVALUACIÓN</h2>
+        <ul>
+          <li><strong>Modalidad Única en Computadora:</strong> 100% Laboratorio de Programación en C++ (sin parte
+            escrita en papel). Duración estimada: 120–150 minutos.</li>
+          <li><strong>Entorno de Desarrollo:</strong> El código deberá compilar en C++ (Code::Blocks, VS
+            Code, CLion, MinGW / GCC).</li>
+          <li><strong>Estructura de Datos:</strong> Se debe utilizar exclusivamente un arreglo de estructuras con tipos
+            de datos primitivos. No está permitido utilizar arreglos paralelos ni cadenas de texto de la librería
+            estándar dentro de la estructura.</li>
+          <li><strong>Separación de Responsabilidades:</strong> El menú y las vistas ya están provistos en la plantilla
+            base. La lectura de datos, la validación de valores válidos según el dominio y el cálculo de los atributos
+            derivados se resuelven desde la interacción del menú; los resguardos estructurales (cupo disponible, validez
+            de posición, unicidad de clave, existencia del registro y prevención de división por cero) corresponden a
+            las funciones implementadas.</li>
+          <li><strong>Criterio de Aprobación:</strong> Se aprueba alcanzando al menos <strong>60%</strong> del puntaje
+            total (Nota 4 UCSE). El programa debe compilar sin errores en C++.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pie de Página Institucional UCSE -->
+  <footer class="footer-info">
+    <div class="main-container">
+      <p><strong>Universidad Católica de Santiago del Estero</strong></p>
+      <p>Departamento Académico San Salvador • Facultad de Ciencias de la Salud y Tecnologías de la Información</p>
+      <p>Algoritmos y Programación — Examen Final Regular (Mesa Noviembre 2026)</p>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tabIndex) {
+      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        if (idx === tabIndex) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      document.querySelectorAll('.tab-content').forEach((content, idx) => {
+        if (idx === tabIndex) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+    }
+  </script>
+
+    <dialog id="ucse-auth-dialog" closedby="none" aria-labelledby="ucse-auth-title">
+        <div class="ucse-auth-header">
+            <h2 id="ucse-auth-title">Acceso Restringido al Examen</h2>
+            <p>Algoritmos y Programación • UCSE</p>
+        </div>
+        <div class="ucse-auth-body">
+            <form id="ucse-auth-form" method="dialog" novalidate>
+                <div class="ucse-auth-field">
+                    <label for="ucse-auth-pass">Contraseña de habilitación <span aria-hidden="true">*</span></label>
+                    <div class="ucse-auth-input-wrap">
+                        <input id="ucse-auth-pass" name="exam_password" type="password" inputmode="numeric" autocomplete="current-password" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="done" aria-describedby="ucse-auth-hint ucse-auth-error" required autofocus>
+                        <button type="button" id="ucse-auth-toggle" class="ucse-auth-toggle" aria-pressed="false" aria-label="Mostrar contraseña">Mostrar</button>
+                    </div>
+                    <span id="ucse-auth-hint" class="ucse-auth-hint">Solicite la clave numérica al docente en el aula.</span>
+                    <div id="ucse-auth-error" class="ucse-auth-error" role="alert" aria-live="polite">Contraseña incorrecta. Acceso bloqueado.</div>
+                </div>
+                <button type="submit" class="ucse-auth-submit">Desbloquear Examen</button>
+            </form>
+        </div>
+    </dialog>
+    <script>
+        (function () {
+            const STORAGE_KEY = 'ucse_final_nov_2026_unlocked';
+            const EXPECTED_SIG = 3815480358;
+            const dialog = document.getElementById('ucse-auth-dialog');
+            const form = document.getElementById('ucse-auth-form');
+            const input = document.getElementById('ucse-auth-pass');
+            const errorEl = document.getElementById('ucse-auth-error');
+            const toggleBtn = document.getElementById('ucse-auth-toggle');
+
+            function sig(str) {
+                let h = 2166136261 >>> 0;
+                for (let i = 0; i < str.length; i++) {
+                    h ^= str.charCodeAt(i);
+                    h = Math.imul(h, 16777619) >>> 0;
+                }
+                return h >>> 0;
+            }
+
+            function isUnlocked() {
+                try {
+                    return sessionStorage.getItem(STORAGE_KEY) === '1';
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function markUnlocked() {
+                try {
+                    sessionStorage.setItem(STORAGE_KEY, '1');
+                } catch (e) {}
+            }
+
+            if (isUnlocked()) {
+                document.documentElement.removeAttribute('data-auth-locked');
+                return;
+            }
+
+            document.documentElement.setAttribute('data-auth-locked', 'true');
+            if (dialog && typeof dialog.showModal === 'function' && !dialog.open) {
+                dialog.showModal();
+            }
+
+            dialog.addEventListener('cancel', function (e) {
+                if (!isUnlocked()) {
+                    e.preventDefault();
+                    errorEl.setAttribute('data-visible', 'true');
+                    input.setAttribute('aria-invalid', 'true');
+                    input.focus();
+                }
+            });
+
+            dialog.addEventListener('close', function () {
+                dialog.returnValue = '';
+                if (!isUnlocked()) {
+                    dialog.showModal();
+                }
+            });
+
+            input.addEventListener('input', function () {
+                input.removeAttribute('aria-invalid');
+                errorEl.removeAttribute('data-visible');
+            });
+
+            toggleBtn.addEventListener('click', function () {
+                const showing = input.type === 'text';
+                input.type = showing ? 'password' : 'text';
+                toggleBtn.setAttribute('aria-pressed', String(!showing));
+                toggleBtn.setAttribute('aria-label', showing ? 'Mostrar contraseña' : 'Ocultar contraseña');
+                toggleBtn.textContent = showing ? 'Mostrar' : 'Ocultar';
+                input.focus();
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (sig(input.value.trim()) === EXPECTED_SIG) {
+                    markUnlocked();
+                    document.documentElement.removeAttribute('data-auth-locked');
+                    dialog.close();
+                } else {
+                    input.setAttribute('aria-invalid', 'true');
+                    errorEl.setAttribute('data-visible', 'true');
+                    input.select();
+                    input.focus();
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>
