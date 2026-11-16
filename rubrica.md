@@ -27,9 +27,9 @@ El código base provisto entrega el esqueleto de `main()`, el arreglo `inventari
   - **0% (Insuficiente):** No compila, desborda límites o no localiza el registro.
 
 ### Bloque 2: Alta / Inserción con Unicidad de Clave (15%)
-- **Firma de Referencia:** `bool insertarMedicamento(Medicamento arr[], int &tam, int capacidad, int pos, const Medicamento &nuevo);`
+- **Firma de Referencia:** `bool insertarMedicamento(Medicamento arr[], int &tam, int pos, const Medicamento &nuevo);`
 - **Criterios de Evaluación:**
-  - **15% (Completo / Excelente):** Validación de límites físicos (`tam < capacidad` y `0 <= pos <= tam`). **Reutilización modular** de `buscarPorCodigo(...)` para rechazar códigos duplicados. Corrimiento contiguo a derecha (*Right-Shift*) desde `tam` hasta `pos + 1`, inserción en `arr[pos]`, incremento `tam++` (por referencia) y retorno booleano.
+  - **15% (Completo / Excelente):** Validación de límites físicos (`tam < CAPACIDAD` y `0 <= pos <= tam`). **Reutilización modular** de `buscarPorCodigo(...)` para rechazar códigos duplicados. Corrimiento contiguo a derecha (*Right-Shift*) desde `tam` hasta `pos + 1`, inserción en `arr[pos]`, incremento `tam++` (por referencia) y retorno booleano.
   - **12% (Aceptable / Funcional):** Inserta desplazando correctamente y evita duplicados mediante búsqueda lineal *in-line* sin reutilizar el módulo de búsqueda (80% del bloque).
   - **5% (Básico):** Inserta pero omite unicidad de clave o comete errores de límite (*off-by-one*) en el corrimiento.
   - **0% (Insuficiente):** Sobrescribe datos sin desplazar, no actualiza `&tam` o desborda `capacidad`.

@@ -68,9 +68,9 @@ struct Medicamento {
   - Retorna índice `[0 .. tam-1]` o centinela `-1`. Respeta `const` en el arreglo.
 
 ### 3.2. Alta / Inserción en Posición con Unicidad de Clave (15%)
-- **Firma Oficial:** `bool insertarMedicamento(Medicamento arr[], int &tam, int capacidad, int pos, const Medicamento &nuevo);`
+- **Firma Oficial:** `bool insertarMedicamento(Medicamento arr[], int &tam, int pos, const Medicamento &nuevo);`
 - **Contrato:**
-  - Control de capacidad y fronteras: retorna `false` si `tam >= capacidad || pos < 0 || pos > tam`.
+  - Control de capacidad global (`CAPACIDAD = 15`) y fronteras: retorna `false` si `tam >= CAPACIDAD || pos < 0 || pos > tam`.
   - **Reutilización obligatoria de búsqueda:** invoca `buscarPorCodigo(arr, tam, nuevo.codigo) != -1` para rechazar duplicados.
   - *Right-Shift:* desplaza `arr[i] = arr[i - 1]` desde `i = tam` hasta `pos + 1`.
   - Inserta `arr[pos] = nuevo`, incrementa `tam++` y retorna `true`.

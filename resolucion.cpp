@@ -3,6 +3,8 @@
 
 using namespace std;
 
+const int CAPACIDAD = 15;
+
 struct Medicamento {
     // Estructura declarada respetando estrictamente el orden del enunciado para inicializacion por llaves
     int codigo;            // Clave Primaria univoca (inmutable)
@@ -15,7 +17,7 @@ struct Medicamento {
 // Prototipos de funciones a implementar por el estudiante
 void intercambiar(Medicamento &a, Medicamento &b);
 int buscarPorCodigo(const Medicamento arr[], int tam, int codigoBuscado);
-bool insertarMedicamento(Medicamento arr[], int &tam, int capacidad, int pos, const Medicamento &nuevo);
+bool insertarMedicamento(Medicamento arr[], int &tam, int pos, const Medicamento &nuevo);
 bool modificarMedicamento(Medicamento arr[], int tam, const Medicamento &actualizado);
 bool darDeBajaMedicamento(Medicamento arr[], int &tam, int codigoABorrar);
 void ordenarPorPrecioListaBurbujaAsc(Medicamento arr[], int tam);
@@ -28,7 +30,6 @@ void mostrarFicha(const Medicamento &e);
 void mostrarTabla(const Medicamento arr[], int tam);
 
 int main() {
-    const int CAPACIDAD = 15;
     Medicamento inventario[CAPACIDAD] = {
         {105, 2027, 'M', 8000.0,  7200.0},
         {210, 2030, 'E', 12000.0, 12000.0},
@@ -105,7 +106,7 @@ int main() {
                     nuevo.precioVenta = nuevo.precioLista;
                 }
 
-                if (insertarMedicamento(inventario, tam, CAPACIDAD, pos, nuevo)) {
+                if (insertarMedicamento(inventario, tam, pos, nuevo)) {
                     cout << "\n  [OK] Medicamento registrado exitosamente en la celda [" << pos << "]. Total: " << tam << "/" << CAPACIDAD << "\n";
                 } else {
                     cout << "\n  [!] ERROR: No se pudo registrar. Verifique codigo duplicado, cupo agotado o posicion invalida.\n";
@@ -238,8 +239,8 @@ int buscarPorCodigo(const Medicamento arr[], int tam, int codigoBuscado) {
     return -1;
 }
 
-bool insertarMedicamento(Medicamento arr[], int &tam, int capacidad, int pos, const Medicamento &nuevo) {
-    if (tam >= capacidad || pos < 0 || pos > tam) return false;
+bool insertarMedicamento(Medicamento arr[], int &tam, int pos, const Medicamento &nuevo) {
+    if (tam >= CAPACIDAD || pos < 0 || pos > tam) return false;
     if (buscarPorCodigo(arr, tam, nuevo.codigo) != -1) return false;
     for (int i = tam; i > pos; --i) {
         arr[i] = arr[i - 1];
